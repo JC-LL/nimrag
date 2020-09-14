@@ -1,12 +1,22 @@
-GARMIN_DIR="/home/jcll/GARMIN"
+require 'fileutils'
 
+GARMIN_DIR="/home/jcll/GARMIN"
 HISTORY_FILE=__dir__+"/"+"history.dat"
+
+puts "[+] checking install"
+puts " |--> checking : #{GARMIN_DIR}"
+if File.exist?(GARMIN_DIR)
+  puts " |--> GARMIN_DIR exists. Good."
+else
+  puts " |--> GARMIN_DIR does not exists. Creating it."
+  FileUtils.mkdir_p GARMIN_DIR
+end
 
 puts "[+] open download history"
 history_file=File.open(HISTORY_FILE,'r')
 history=history_file.readlines.map(&:chomp)
 
-puts "[+] changing dir"
+#puts "[+] changing dir"
 Dir.chdir(GARMIN_DIR)
 
 # puts "[+] load runs"
