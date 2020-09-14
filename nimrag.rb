@@ -19,11 +19,12 @@ history=history_file.readlines.map(&:chomp)
 #puts "[+] changing dir"
 Dir.chdir(GARMIN_DIR)
 
-# puts "[+] load runs"
-# ret_code=system("garmin_save_runs")
-# unless ret_code
-#   puts "garmin_save_runs failed. Is it correctly installed ?"
-# end
+puts "[+] massively reload runs."
+ret_code=system("garmin_save_runs")
+unless ret_code
+  puts "garmin_save_runs failed. Is it correctly installed ?"
+  raise "ERROR"
+end
 
 puts "[+] translating files to gpx format"
 nb_translations=0
